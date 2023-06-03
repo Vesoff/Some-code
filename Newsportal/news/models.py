@@ -8,19 +8,23 @@ class Author (models.Model):
     rating = models.SmallIntegerField(default=0)
 
     def update_rating(self):
-        rating_of_posts_by_author = Post.objects.filter(author=self).aggregate(result=Sum('rating')).get('result') * 3
-        rating_of_comments_by_author = Comment.objects.filter(user=self.user).aggregate(result=Sum('rating')).get('result')
-        rating_of_comments_under_posts_author = Comment.objects.filter(user=self.user).aggregate(result=Sum('rating')).get('result')
+        rate_of_posts_by_author = Post.objects.filter(author=self).aggregate(result=Sum('rating')).get('result') * 3
+        rate_of_com_by_author = Comment.objects.filter(user=self.user).aggregate(result=Sum('rating')).get('result')
+        rate_of_com_posts_author = Comment.objects.filter(user=self.user).aggregate(result=Sum('rating')).get('result')
 
-        self.rating = rating_of_posts_by_author + rating_of_comments_by_author + rating_of_comments_under_posts_author
+        self.rating = rate_of_posts_by_author + rate_of_com_by_author + rate_of_com_posts_author
         self.save()
 
 
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Post (models.Model):
+    objects = None
     news = 'NW'
     article = 'AR'
 
@@ -47,8 +51,16 @@ class Post (models.Model):
         self.rating -= 1
         self.save()
 
-    def preview(self, length=124):
-        return f"{self.text[:length]}..." if len(self.text) > length else self.text
+    def __str__(self):
+        return self.title
+
+
+@property
+def preview(self):
+    if len(self.text) > 124:
+        return self.text[:124] + '...'
+    else:
+        return self.text
 
 
 class PostCategory (models.Model):
@@ -57,6 +69,7 @@ class PostCategory (models.Model):
 
 
 class Comment (models.Model):
+    objects = None
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()

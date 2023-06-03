@@ -1,0 +1,33 @@
+<!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+News.title|censor
+{% endblock title %}
+
+{% block content %}
+    <h1>Все новости: {{ news|length }}</h1>
+    {% if news %}
+        <h4>
+            <table> <!-- Начинаем описывать таблицу -->
+                <tr>
+                    <td> Наименование </td>
+                    <td> Дата </td>
+                    <td> Текст </td>
+                </tr>
+
+                {% for post in news %}
+                <tr>
+                    <td>{{ post.title|censor }}</td>
+                    <td>{{ post.time_in|date:'M d Y'}}</td>
+                    <td>{{ post.text|truncatechars:20|censor }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </h4>
+    {% else %}
+        <h2>Новостей нет</h2>
+    {% endif %}
+{% endblock content %}
