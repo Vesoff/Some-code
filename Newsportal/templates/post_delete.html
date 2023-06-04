@@ -1,0 +1,11 @@
+{% extends 'flatpages/default.html' %}
+
+{% block content %}
+<h1>Удаление публикации, для выбора публикации в адресной строке: "news/3/delete" вместо "3" указать id публикации. Не удаляйте id=3 или сломается ссылка в меню.</h1>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Удаляем "{{ object.name }}"?</p>
+    <input type="submit" value="Delete" />
+</form>
+{% endblock content %}
