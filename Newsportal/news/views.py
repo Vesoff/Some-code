@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
 from datetime import datetime
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 from .filters import PostFilter
 from .forms import PostForm
@@ -52,7 +53,7 @@ class PostCreate(CreateView):
     template_name = 'create.html'
 
 
-class PostUpdate(UpdateView):
+class PostUpdate(LoginRequiredMixin, UpdateView):
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'

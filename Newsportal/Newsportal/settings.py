@@ -38,10 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'news',
-    'accounts',
+    'account',
     'django.contrib.sites',
     'django.contrib.flatpages',
     'django_filters',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # ... include the providers you want to enable:
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +77,9 @@ TEMPLATES = [
         },
     },
 ]
+
+LOGIN_URL = '/account/login/'
+LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'Newsportal.wsgi.application'
 
@@ -124,6 +132,12 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 SITE_ID = 1
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
