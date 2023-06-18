@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from datetime import datetime
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from .models import Post
 from .filters import PostFilter
 from .forms import PostForm
@@ -47,13 +47,17 @@ class PSearchList(ListView):
         return context
 
 
-class PostCreate(CreateView):
+class PostCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('news.add_post',
+                           'news.change_post')
     form_class = PostForm
     model = Post
     template_name = 'create.html'
 
 
-class PostUpdate(LoginRequiredMixin, UpdateView):
+class PostUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = ('news.add_post',
+                           'news.change_post')
     form_class = PostForm
     model = Post
     template_name = 'post_edit.html'
@@ -64,7 +68,10 @@ class PostDelete(DeleteView):
     template_name = 'post_delete.html'
     success_url = reverse_lazy('post_search')
 
-class ArticleCreate(CreateView):
+
+class ArticleCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('news.add_post',
+                           'news.change_post')
     model = Post
     form_class = PostForm
     template_name = 'create_art.html'
