@@ -63,7 +63,9 @@ class PostUpdate(PermissionRequiredMixin, UpdateView):
     template_name = 'post_edit.html'
 
 
-class PostDelete(DeleteView):
+class PostDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('news.delete_post',
+                           'news.change_post')
     model = Post
     template_name = 'post_delete.html'
     success_url = reverse_lazy('post_search')
