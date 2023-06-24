@@ -1,0 +1,19 @@
+{% load custom_filters %}
+
+{% if posts %}
+{% for post in posts %}
+
+
+{% include 'inc/details.html' %}
+<p>
+  {{ post.text|censor }}
+</p>
+
+{% include 'inc/buttons.html' %}
+
+
+{% endfor %}
+
+{% else %}
+<h2>No Posts yet</h2>>
+{% endif %}
