@@ -62,13 +62,8 @@ class Post (models.Model):
     def get_absolute_url(self):
         return reverse('news_detail', args=[str(self.id)])
 
-
-@property
-def preview(self):
-    if len(self.text) > 124:
+    def preview(self):
         return self.text[:124] + '...'
-    else:
-        return self.text
 
 
 class PostCategory (models.Model):

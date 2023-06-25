@@ -1,22 +1,90 @@
-{% extends 'base.html' %}
+{% extends 'flatpages/default.html' %}
 
-{% block title %} News {% endblock %}
+{% load custom_filters %}
+
+{% block title %}
+News.title|censor
+{% endblock title %}
 
 {% block content %}
+    {% if is_not_subscriber %}
+        <p class="text-center">
+            <a href="{% url 'subscribe' category.id %}" class="btn btn-secondary btn-sm">
+                Подписаться
+            </a>
+        </p>
+    {% endif %}
+    <h1>
+        Все новости: {{ news|length }}
+    </h1>
+    {% if category_news %}
+        <h4>
+            <table> <!-- Начинаем описывать таблицу -->
+                <tr>
+                    <td>
+                        Наименование
+                    </td>
+                    <td>
+                        Дата
+                    </td>
+                    <td>
+                        Текст
+                    </td>
+                    <td>
+                        Категория
+                    </td>
+                </tr>
 
-{% if category.id %}
-<div class="subscribe">
-    <em>
-        Subscribe to
-        <strong>{{ category }}?</strong>
-    </em>
+                {% for post in category_news %}
+                <tr>
+                    <td>
+                        {{ post.title|censor }}
+                    </td>
+                    <td>
+                        {{ post.time_in|date:'M d Y'}}
+                    </td>
+                    <td>
+                        {{ post.text|truncatechars:20|censor }}
+                    </td>
+                    <td>
+                        {% for category in post.category.all %}
+                            <a href="{% url 'category' category.id %}">{{ category }}</a>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </h4>
+    {% else %}
+        <h2>
+            Новостей нет
+        </h2>
+    {% endif %}
+{% if page_obj.has_previous %}
+       <a href="?page=1">
+           1
+       </a>
+       {% if page_obj.previous_page_number != 1 %}
+           ...
+           <a href="?page={{ page_obj.previous_page_number }}">
+               {{ page_obj.previous_page_number }}
+           </a>
+       {% endif %}
+   {% endif %}
 
-    <a href="{#% url 'news:subscribe' category.id %#}" class="button button-outline">
-        Subscribe
-    </a>
-</div>
-{% endif %}
+   {# Информация о текущей странице #}
+   {{ page_obj.number }}
 
-{% include 'inc/posts.html' %}
-
+   {# Информация о следующих страницах #}
+   {% if page_obj.has_next %}
+       <a href="?page={{ page_obj.next_page_number }}">
+           {{ page_obj.next_page_number }}
+       </a>
+       {% if paginator.num_pages != page_obj.next_page_number %}
+           ...
+           <a href="?page={{ page_obj.paginator.num_pages }}">
+               {{ page_obj.paginator.num_pages }}
+           </a>
+       {% endif %}
+   {% endif %}
 {% endblock content %}

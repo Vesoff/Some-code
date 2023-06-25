@@ -34,7 +34,6 @@ class BaseUpdateForm(UserChangeForm):
                   "email",)
 
 
-
 class CommonSignupForm(SignupForm):
 
     def save(self, request):

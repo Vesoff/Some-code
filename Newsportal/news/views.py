@@ -1,8 +1,7 @@
 from django.conf import settings
-from django.core.mail import EmailMultiAlternatives
-from django.shortcuts import redirect
-from django.template.loader import render_to_string
-from django.urls import reverse_lazy, resolve
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse_lazy
 from datetime import datetime
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -89,56 +88,28 @@ class ArticleCreate(PermissionRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class PostCategory(ListView):
+class PostCategory(PList):
     model = Post
     template_name = 'category.html'
-    context_object_name = 'post'
-    ordering = ['-time_in']
-    paginate_by = 10
+    context_object_name = 'category_news'
 
     def get_queryset(self):
-        self.id = resolve(self.request.path_info).kwargs['pk']
-        c = Category.objects.get(id=self.id)
-        queryset = Post.objects.filter(category=c)
+        self.category = get_object_or_404(Category, id=self.kwargs['pk'])
+        queryset = Post.objects.filter(category=self.category).order_by('-time_in')
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        user = self.request.user
-        category = Category.objects.get(id=self.id)
-        subscribed = category.subscribers.filter(email=user.email)
-        if not subscribed:
-            context['category'] = category
-
+        context['is_not_subscriber'] = self.request.user not in self.category.subscribers.all()
+        context['category'] = self.category
         return context
 
 
-def subscribe_category(request, pk):
+@login_required
+def subscribe(request, pk):
     user = request.user
     category = Category.objects.get(id=pk)
+    category.subscribers.add(user)
 
-    if not category.subscribers.filter(id=user.id).exists():
-        category.subscribers.add(user)
-        email = user.email
-        html = render_to_string(
-            'mail/subscribed.html',
-            {
-                'category': category,
-                'user': user,
-            },
-        )
-
-        msg = EmailMultiAlternatives(
-            subject=f'{category} subscription',
-            body='',
-            from_email=DEFAULT_FROM_EMAIL,
-            to=[email,],
-        )
-        msg.attach_alternative(html, 'text/html')
-
-        try:
-            msg.send()
-        except Exception as e:
-            print(e)
-        return redirect('personal')
-    return redirect(request.META.get('HTTP_REFERER'))
+    message = 'Вы подписались на рассылку новостей категории'
+    return render(request, 'mail/subscribe.html', {'category': category, 'message': message})
