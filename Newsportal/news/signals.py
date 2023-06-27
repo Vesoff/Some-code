@@ -3,6 +3,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.db.models.signals import m2m_changed
 from django.dispatch import receiver
 from django.template.loader import render_to_string
+from .tasks import send_email_notification
 
 from news.models import PostCategory
 
@@ -37,4 +38,4 @@ def notify_about_new_post(sender, instance, **kwargs):
             subscribers = cat.subscribers.all()
             subscribers_emails += [s.email for s in subscribers]
 
-        send_notifications(instance.preview(), instance.pk, instance.title, subscribers_emails)
+        send_email_notification.delay(instance.pk)

@@ -85,10 +85,7 @@ class ArticleCreate(PermissionRequiredMixin, CreateView):
     template_name = 'create_art.html'
 
     def form_valid(self, form):
-        post = form.save(commit=False)
         form.instance.post_type = 'article'
-        post.save()
-        send_email_notification.delay(post.pk)
         return super().form_valid(form)
 
 

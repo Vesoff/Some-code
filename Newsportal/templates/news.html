@@ -12,28 +12,52 @@ News.title|censor
         <h4>
             <table> <!-- Начинаем описывать таблицу -->
                 <tr>
-                    <td> Наименование </td>
-                    <td> Дата </td>
-                    <td> Текст </td>
+                    <td>
+                        Наименование
+                    </td>
+                    <td>
+                        Дата
+                    </td>
+                    <td>
+                        Текст
+                    </td>
+                    <td>
+                        Категория
+                    </td>
                 </tr>
 
                 {% for post in news %}
                 <tr>
-                    <td>{{ post.title|censor }}</td>
-                    <td>{{ post.time_in|date:'M d Y'}}</td>
-                    <td>{{ post.text|truncatechars:20|censor }}</td>
+                    <td>
+                        {{ post.title|censor }}
+                    </td>
+                    <td>
+                        {{ post.time_in|date:'M d Y'}}
+                    </td>
+                    <td>
+                        {{ post.text|truncatechars:20|censor }}
+                    </td>
+                    <td>
+                        {% for category in post.category.all %}
+                            <a href="{% url 'category' category.id %}">{{ category }}</a>
+                        {% endfor %}
+                    </td>
                 </tr>
                 {% endfor %}
             </table>
         </h4>
     {% else %}
-        <h2>Новостей нет</h2>
+        <h2>
+            Новостей нет
+        </h2>
     {% endif %}
 {% if page_obj.has_previous %}
        <a href="?page=1">1</a>
        {% if page_obj.previous_page_number != 1 %}
            ...
-           <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+           <a href="?page={{ page_obj.previous_page_number }}">
+               {{ page_obj.previous_page_number }}
+           </a>
        {% endif %}
    {% endif %}
 
@@ -42,10 +66,14 @@ News.title|censor
 
    {# Информация о следующих страницах #}
    {% if page_obj.has_next %}
-       <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+       <a href="?page={{ page_obj.next_page_number }}">
+           {{ page_obj.next_page_number }}
+       </a>
        {% if paginator.num_pages != page_obj.next_page_number %}
            ...
-           <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+           <a href="?page={{ page_obj.paginator.num_pages }}">
+               {{ page_obj.paginator.num_pages }}
+           </a>
        {% endif %}
    {% endif %}
 {% endblock content %}

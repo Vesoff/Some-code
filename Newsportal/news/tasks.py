@@ -36,8 +36,8 @@ def weekly_send_task():
 @shared_task
 def send_email_notification(pk):
     posts = Post.objects.filter(pk=pk)
-    category = set(posts.values_list('category__name', flat=True))
-    title = posts.title
+    category = [cat for cat in posts[0].category.all()]
+    title = posts[0].title
     subscribers_emails = []
 
     for cat in category:
@@ -47,7 +47,7 @@ def send_email_notification(pk):
     html_content = render_to_string(
         'mail/post_created_email.html',
         {
-            'text': posts.preview,
+            'text': posts[0].preview,
             'link': f'{settings.SITE_URL}/news/{pk}'
         }
     )
