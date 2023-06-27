@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from .models import Post, Category
 from .filters import PostFilter
 from .forms import PostForm
+from .tasks import send_email_notification
 
 DEFAULT_FROM_EMAIL = settings.DEFAULT_FROM_EMAIL
 
@@ -84,7 +85,10 @@ class ArticleCreate(PermissionRequiredMixin, CreateView):
     template_name = 'create_art.html'
 
     def form_valid(self, form):
+        post = form.save(commit=False)
         form.instance.post_type = 'article'
+        post.save()
+        send_email_notification.delay(post.pk)
         return super().form_valid(form)
 
 
