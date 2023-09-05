@@ -1,0 +1,311 @@
+ERROR 2023-09-05 18:18:43,910  Internal Server Error: /news/ C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\utils\log.py, (<class 'PermissionError'>, PermissionError(13, 'Permission denied'), <traceback object at 0x0000023B28A6D480>)
+Traceback (most recent call last):
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\loaders\base.py", line 23, in get_template
+    contents = self.get_contents(origin)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\loaders\cached.py", line 26, in get_contents
+    return origin.loader.get_contents(origin)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\loaders\filesystem.py", line 22, in get_contents
+    with open(origin.name, encoding=self.engine.file_charset) as fp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\germa\\PycharmProjects\\pythonProject\\Newsportal\\templates'
+ERROR 2023-09-05 18:18:43,910  "GET /news/ HTTP/1.1" 500 120157 C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\core\servers\basehttp.py, None
+ERROR 2023-09-05 18:23:16,283  Internal Server Error: /account/google/login/ C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\utils\log.py, (<class 'allauth.socialaccount.models.SocialApp.DoesNotExist'>, DoesNotExist('SocialApp matching query does not exist.'), <traceback object at 0x000002614E989D00>)
+Traceback (most recent call last):
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\allauth\socialaccount\providers\oauth2\views.py", line 81, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\allauth\socialaccount\providers\base\mixins.py", line 19, in dispatch
+    return self.login(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\allauth\socialaccount\providers\oauth2\views.py", line 109, in login
+    app = provider.get_app(self.request)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\allauth\socialaccount\providers\base\provider.py", line 30, in get_app
+    return adapter.get_app(request, self.id, config=config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\allauth\socialaccount\adapter.py", line 203, in get_app
+    app = SocialApp.objects.get_current(provider, request)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\allauth\socialaccount\models.py", line 31, in get_current
+    app = self.get(sites__id=site.id, provider=provider)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\db\models\query.py", line 637, in get
+    raise self.model.DoesNotExist(
+allauth.socialaccount.models.SocialApp.DoesNotExist: SocialApp matching query does not exist.
+ERROR 2023-09-05 18:23:16,285  "POST /account/google/login/?process=login&next=%2Fnews%2Fcreate%2F HTTP/1.1" 500 107873 C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\core\servers\basehttp.py, None
+ERROR 2023-09-05 18:31:57,412  Internal Server Error: /account/google/login/ C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\utils\log.py, (<class 'allauth.socialaccount.models.SocialApp.DoesNotExist'>, DoesNotExist('SocialApp matching query does not exist.'), <traceback object at 0x000002102BF426C0>)
+Traceback (most recent call last):
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\allauth\socialaccount\providers\oauth2\views.py", line 81, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\allauth\socialaccount\providers\base\mixins.py", line 19, in dispatch
+    return self.login(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\allauth\socialaccount\providers\oauth2\views.py", line 109, in login
+    app = provider.get_app(self.request)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\allauth\socialaccount\providers\base\provider.py", line 30, in get_app
+    return adapter.get_app(request, self.id, config=config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\allauth\socialaccount\adapter.py", line 203, in get_app
+    app = SocialApp.objects.get_current(provider, request)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\allauth\socialaccount\models.py", line 31, in get_current
+    app = self.get(sites__id=site.id, provider=provider)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\db\models\query.py", line 637, in get
+    raise self.model.DoesNotExist(
+allauth.socialaccount.models.SocialApp.DoesNotExist: SocialApp matching query does not exist.
+ERROR 2023-09-05 18:31:57,415  "POST /account/google/login/?process=login&next=%2Fnews%2Fcreate%2F HTTP/1.1" 500 108022 C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\core\servers\basehttp.py, None
+ERROR 2023-09-05 18:35:48,349  Internal Server Error: /news/create/ C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\utils\log.py, (<class 'kombu.exceptions.OperationalError'>, OperationalError('Error 11001 connecting to redis-10396.c300.eu-central-1-1.ec2.cloud.redislabs.com:10396. getaddrinfo failed.'), <traceback object at 0x000001ED99F855C0>)
+Traceback (most recent call last):
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\redis\connection.py", line 707, in connect
+    sock = self.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\redis\retry.py", line 46, in call_with_retry
+    return do()
+           ^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\redis\connection.py", line 708, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+            ^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\redis\connection.py", line 974, in _connect
+    for res in socket.getaddrinfo(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11002] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\celery\backends\redis.py", line 127, in reconnect_on_error
+    yield
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\celery\backends\redis.py", line 177, in _consume_from
+    self._pubsub.subscribe(key)
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\redis\client.py", line 1634, in subscribe
+    ret_val = self.execute_command("SUBSCRIBE", *new_channels.keys())
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\redis\client.py", line 1469, in execute_command
+    self.connection = self.connection_pool.get_connection(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\redis\connection.py", line 1461, in get_connection
+    connection.connect()
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\redis\connection.py", line 713, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 11002 connecting to redis-10396.c300.eu-central-1-1.ec2.cloud.redislabs.com:10396. getaddrinfo failed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\redis\connection.py", line 707, in connect
+    sock = self.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\redis\retry.py", line 46, in call_with_retry
+    return do()
+           ^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\redis\connection.py", line 708, in <lambda>
+    lambda: self._connect(), lambda error: self.disconnect(error)
+            ^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\redis\connection.py", line 974, in _connect
+    for res in socket.getaddrinfo(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 962, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\kombu\connection.py", line 472, in _reraise_as_library_errors
+    yield
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\celery\app\base.py", line 797, in send_task
+    self.backend.on_task_call(P, task_id)
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\celery\backends\redis.py", line 373, in on_task_call
+    self.result_consumer.consume_from(task_id)
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\celery\backends\redis.py", line 169, in consume_from
+    return self.start(task_id)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\celery\backends\redis.py", line 147, in start
+    self._consume_from(initial_task_id)
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\celery\backends\redis.py", line 176, in _consume_from
+    with self.reconnect_on_error():
+  File "C:\Users\germa\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 155, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\celery\backends\redis.py", line 130, in reconnect_on_error
+    self._ensure(self._reconnect_pubsub, ())
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\celery\backends\redis.py", line 384, in ensure
+    return retry_over_time(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\kombu\utils\functional.py", line 318, in retry_over_time
+    return fun(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\celery\backends\redis.py", line 106, in _reconnect_pubsub
+    metas = self.backend.client.mget(self.subscribed_to)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\redis\commands\core.py", line 2002, in mget
+    return self.execute_command("MGET", *args, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\redis\client.py", line 1266, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\redis\connection.py", line 1461, in get_connection
+    connection.connect()
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\redis\connection.py", line 713, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 11001 connecting to redis-10396.c300.eu-central-1-1.ec2.cloud.redislabs.com:10396. getaddrinfo failed.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\contrib\auth\mixins.py", line 109, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\views\generic\edit.py", line 184, in post
+    return super().post(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\views\generic\edit.py", line 153, in post
+    return self.form_valid(form)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\views\generic\edit.py", line 135, in form_valid
+    self.object = form.save()
+                  ^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\forms\models.py", line 543, in save
+    self._save_m2m()
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\forms\models.py", line 524, in _save_m2m
+    f.save_form_data(self.instance, cleaned_data[f.name])
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\db\models\fields\related.py", line 1956, in save_form_data
+    getattr(instance, self.attname).set(data)
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 1236, in set
+    self.add(*new_objs, through_defaults=through_defaults)
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 1137, in add
+    self._add_items(
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 1447, in _add_items
+    signals.m2m_changed.send(
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\dispatch\dispatcher.py", line 176, in send
+    return [
+           ^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\dispatch\dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\news\signals.py", line 41, in notify_about_new_post
+    send_email_notification.delay(instance.pk)
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\celery\app\task.py", line 444, in delay
+    return self.apply_async(args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\celery\app\task.py", line 594, in apply_async
+    return app.send_task(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\celery\app\base.py", line 795, in send_task
+    with P.connection._reraise_as_library_errors():
+  File "C:\Users\germa\AppData\Local\Programs\Python\Python311\Lib\contextlib.py", line 155, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\kombu\connection.py", line 476, in _reraise_as_library_errors
+    raise ConnectionError(str(exc)) from exc
+kombu.exceptions.OperationalError: Error 11001 connecting to redis-10396.c300.eu-central-1-1.ec2.cloud.redislabs.com:10396. getaddrinfo failed.
+ERROR 2023-09-05 18:40:04,723  Internal Server Error: /news/ C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\utils\log.py, (<class 'PermissionError'>, PermissionError(13, 'Permission denied'), <traceback object at 0x000001559717B840>)
+Traceback (most recent call last):
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\backends\django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\loaders\base.py", line 23, in get_template
+    contents = self.get_contents(origin)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\loaders\cached.py", line 26, in get_contents
+    return origin.loader.get_contents(origin)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\template\loaders\filesystem.py", line 22, in get_contents
+    with open(origin.name, encoding=self.engine.file_charset) as fp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\germa\\PycharmProjects\\pythonProject\\Newsportal\\templates'
+ERROR 2023-09-05 18:40:04,723  "GET /news/ HTTP/1.1" 500 120149 C:\Users\germa\PycharmProjects\pythonProject\Newsportal\venv\Lib\site-packages\django\core\servers\basehttp.py, None
